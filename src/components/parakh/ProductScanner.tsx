@@ -80,7 +80,7 @@ export function ProductScanner({ dense = false }: { dense?: boolean }) {
           <Button
             variant="outline"
             className="mt-3"
-            onClick={() => analyze(DEMO_PRODUCTS[0])}
+            onClick={() => analyze(DEMO_PRODUCTS[0]!)}
           >
             Use demo product
           </Button>
