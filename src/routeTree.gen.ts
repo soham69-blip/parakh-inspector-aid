@@ -13,7 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as InspectionsRouteImport } from './routes/inspections'
 import { Route as PriorityRouteImport } from './routes/priority'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as RulesRouteImport } from './routes/rules'
 import { Route as ScanRouteImport } from './routes/scan'
+import { Route as InspectionIdRouteImport } from './routes/inspection.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,9 +38,24 @@ const PriorityRoute = PriorityRouteImport.update({
   path: '/priority',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RulesRoute = RulesRouteImport.update({
+  id: '/rules',
+  path: '/rules',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ScanRoute = ScanRouteImport.update({
   id: '/scan',
   path: '/scan',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InspectionIdRoute = InspectionIdRouteImport.update({
+  id: '/inspection/$id',
+  path: '/inspection/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -46,14 +64,20 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/inspections': typeof InspectionsRoute
   '/priority': typeof PriorityRoute
+  '/reports': typeof ReportsRoute
+  '/rules': typeof RulesRoute
   '/scan': typeof ScanRoute
+  '/inspection/$id': typeof InspectionIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/inspections': typeof InspectionsRoute
   '/priority': typeof PriorityRoute
+  '/reports': typeof ReportsRoute
+  '/rules': typeof RulesRoute
   '/scan': typeof ScanRoute
+  '/inspection/$id': typeof InspectionIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +85,42 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/inspections': typeof InspectionsRoute
   '/priority': typeof PriorityRoute
+  '/reports': typeof ReportsRoute
+  '/rules': typeof RulesRoute
   '/scan': typeof ScanRoute
+  '/inspection/$id': typeof InspectionIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/inspections' | '/priority' | '/scan'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/inspections'
+    | '/priority'
+    | '/reports'
+    | '/rules'
+    | '/scan'
+    | '/inspection/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/inspections' | '/priority' | '/scan'
-  id: '__root__' | '/' | '/dashboard' | '/inspections' | '/priority' | '/scan'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/inspections'
+    | '/priority'
+    | '/reports'
+    | '/rules'
+    | '/scan'
+    | '/inspection/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/inspections'
+    | '/priority'
+    | '/reports'
+    | '/rules'
+    | '/scan'
+    | '/inspection/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,7 +128,10 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   InspectionsRoute: typeof InspectionsRoute
   PriorityRoute: typeof PriorityRoute
+  ReportsRoute: typeof ReportsRoute
+  RulesRoute: typeof RulesRoute
   ScanRoute: typeof ScanRoute
+  InspectionIdRoute: typeof InspectionIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -109,11 +164,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PriorityRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rules': {
+      id: '/rules'
+      path: '/rules'
+      fullPath: '/rules'
+      preLoaderRoute: typeof RulesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/scan': {
       id: '/scan'
       path: '/scan'
       fullPath: '/scan'
       preLoaderRoute: typeof ScanRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/inspection/$id': {
+      id: '/inspection/$id'
+      path: '/inspection/$id'
+      fullPath: '/inspection/$id'
+      preLoaderRoute: typeof InspectionIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -124,7 +200,10 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   InspectionsRoute: InspectionsRoute,
   PriorityRoute: PriorityRoute,
+  ReportsRoute: ReportsRoute,
+  RulesRoute: RulesRoute,
   ScanRoute: ScanRoute,
+  InspectionIdRoute: InspectionIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
