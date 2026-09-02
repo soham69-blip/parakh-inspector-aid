@@ -25,7 +25,7 @@ export const Route = createFileRoute("/reports")({
 });
 
 function ReportsPage() {
-  const [id, setId] = useState(DEMO_PRODUCTS[0].id);
+  const [id, setId] = useState(DEMO_PRODUCTS[0]!.id);
   const product = DEMO_PRODUCTS.find((p) => p.id === id)!;
 
   return (

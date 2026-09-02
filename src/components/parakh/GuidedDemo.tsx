@@ -19,7 +19,7 @@ export function GuidedDemo() {
 
   useEffect(() => {
     if (!open) return;
-    const el = document.getElementById(STEPS[step].anchor);
+    const el = document.getElementById(STEPS[step]!.anchor);
     el?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [open, step]);
 
@@ -43,7 +43,7 @@ export function GuidedDemo() {
             <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
               <div className="min-w-0">
                 <p className="label-caps">Guided demo · Step {step + 1} of {STEPS.length}</p>
-                <p className="mt-1.5 text-[15px] font-semibold text-foreground">{STEPS[step].title}</p>
+                <p className="mt-1.5 text-[15px] font-semibold text-foreground">{STEPS[step]!.title}</p>
               </div>
               <button
                 type="button"
@@ -55,7 +55,7 @@ export function GuidedDemo() {
               </button>
             </div>
 
-            <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{STEPS[step].detail}</p>
+            <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground">{STEPS[step]!.detail}</p>
 
             <div className="mt-4 h-1 overflow-hidden rounded-full bg-muted">
               <motion.div

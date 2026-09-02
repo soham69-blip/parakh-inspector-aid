@@ -23,7 +23,7 @@ export function AnnotatedImage({
 }: {
   product: DemoProduct;
   revealed: number;
-  highlightKey?: string;
+  highlightKey?: string | undefined;
   className?: string;
 }) {
   return (
@@ -70,7 +70,7 @@ export function EvidencePanel({
   product: DemoProduct;
   onFocusField?: (key: string) => void;
 }) {
-  const finding = product.findings[0];
+  const finding = product.findings[0]!;
   const box = product.evidenceBox;
 
   return (
